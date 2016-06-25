@@ -1,61 +1,76 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+    Identity by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MediaSilo Microsite</title>
+    <head>
+        <title>Adult Swim PR</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="js/remodal.min.js"></script>
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-loading">
 
-    <!-- Custom styles -->
-    <link href="css/home.css" rel="stylesheet">
-    <link href="fonts/fonts.css" rel="stylesheet">
-    <link href="css/remodal.css" rel="stylesheet">
-    <link href="css/remodal-default-theme.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/remodal.min.js"></script>
+        <!-- Wrapper -->
+            <div id="wrapper" class="remodal-bg">
 
+                <!-- Main -->
+                    <section id="main">
+                        <header>
+                            <span class="avatar"><img src="https://s.cdn.turner.com/adultswim/big/img/adultswim-logo.svg" alt="" /></span>
+                            <p>Press Release Lounge</p>
+                        </header>
+                        <form name="loginForm" method="post" onsubmit="return validateForm()" action="/login">
+                            <div class="field">
+                            <div id="require"> </div>
+                                <input type="username" name="username" id="username" placeholder="Username" />
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password" id="password" placeholder="Password" />
+                            </div>
+                            <ul class="actions">
+                                <li><input class="button" type="submit" value="Login"></input></li>
+                            </ul>
+                        </form>
+                    </section>
 
-</head>
+                <!-- Footer -->
+                    <footer id="footer">
+                        <ul class="copyright">
+                            <li> TM & &copy; 2016 Turner Broadcasting System, Inc. A Time Warner Company. All Rights Reserved.</li>
+                        </ul>
+                    </footer>
 
-<body>
-
-<div class="remodal-bg">
-
-    <div class="loginform" data-remodal-id="modal">
-        <div class="header">Login</div>
-        <p class="m-b-30">We're glad to have you. Please fill out the information above to log in.</p>
-        <form id="loginform" class="m-b-30" method="post" action="/login">
-            <div class="field-item">
-                <label>Username:</label>
-                <input type="text" name="username" id="username" placeholder="">
             </div>
-            <div class="field-item">
-                <label>Password:</label>
-                <input type="password" name="password" id="password" placeholder="">
-            </div>
-        </form>
 
-        <br>
-        <button data-remodal-action="confirm" class="remodal-confirm">LOGIN</button>
-    </div>
+        <!-- Scripts -->
+            <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+            <script type="text/javascript">
+                if ('addEventListener' in window) {
+                    window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+                    document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+                }
 
-</div>
+                function validateForm() {
+                    var username = document.forms["loginForm"]["username"].value;
+                    var password = document.forms["loginForm"]["password"].value;
 
-<script type="text/javascript">
-    // Define and open the modal window
-    var options = {
-        closeOnOutsideClick: false,
-        closeOnEscape: false
-    };
-
-    var inst = $('[data-remodal-id=modal]').remodal(options);
-    inst.open();
-
-    $(document).ready(function() {
-        $(document).on('confirmation', '.remodal', function() {
-           $("#loginform").submit();
-        });
-    });
-
-</script>
-</body>
+                    if (username == "" || username == null || password == "" || password == null) {
+                        //("#require").add("<label>username and password are required</label>");
+                        return false;
+                    }
+                    else {
+                        return true
+                    }
+                }
+            </script>
+    </body>
 </html>

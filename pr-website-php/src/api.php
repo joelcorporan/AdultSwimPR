@@ -48,7 +48,7 @@ class ApiClass {
         curl_setopt($ch, CURLOPT_URL,$apiurl);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("token: " . $sessionkey));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("token: " . $sessiontoken));
         $result=curl_exec($ch);
         curl_close ($ch);
 

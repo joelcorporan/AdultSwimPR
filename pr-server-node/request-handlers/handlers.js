@@ -105,7 +105,6 @@ module.exports = function ResquestHandler(SQLDatabase) {
 	this.handlerProjects = function(req, res) {
 		var credentials = req.params.credentials;
 
-
 		var project = new ProjectsManager();
 		project.handlerProjects(credentials, function(error, found) {
 			if(error) {
