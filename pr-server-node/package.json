@@ -1,0 +1,18 @@
+{
+  "name": "adultswimpr-server",
+  "version": "1.0.0",
+  "description": "Server to manage request from the Press Release website.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Joel R. Corporan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pg": "^5.1.0",
+    "uuid": "^2.0.2"
+  }
+}
