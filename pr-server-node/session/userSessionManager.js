@@ -161,7 +161,7 @@ module.exports =  function UserSessionManager(database) {
 	 * @param callback_endingSession: A callback function to return the result of the request.
 	 */
 	var endSession = function(request, callback_endingSession) {
-		var query = "UPDATE monkie SET token = NULL, credentials = NULL, sessionTime = NULL WHERE token = $1"
+		var query = "UPDATE monkie SET token = NULL, credentials = NULL, sessionTime = NULL, temporary_asset = NULL, temporary_url = NULL WHERE token = $1"
 		var value = [request]
 		
 		pgClient.query(query, value, function(error, result) {

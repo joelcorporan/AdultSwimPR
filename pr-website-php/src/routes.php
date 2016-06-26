@@ -55,8 +55,19 @@ $app->post('/login', function ($request, $response, $args) {
 // Logout
 
 $app->get('/logout', function ($request, $response, $args) {
-    setcookie('token', "", time() - 3600, '/');
-    return $this->view->render($response, 'login.html', []);
+
+    $api = new ApiClass;
+
+    // Get the config variables
+    $sessiontoken = $_COOKIE['token'];
+
+    // Logout
+    $logout = json_decode($api->logout($sessiontoken));
+    
+    if($logout != null) {
+        setcookie('token', "", time() - 3600, '/');
+        return $this->view->render($response, 'login.html', []);
+    }
 });
 
 

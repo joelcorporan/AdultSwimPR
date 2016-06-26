@@ -2,6 +2,16 @@
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 
+
+.navbar {
+    line-height: 2em;
+}
+
+.navbar-collapse.in,
+.navbar-collapse.collapsing {
+    clear: left;
+}
+
 body, html {
     background: #ffffff;
     margin: 0;

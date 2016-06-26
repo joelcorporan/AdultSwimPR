@@ -26,6 +26,20 @@ class ApiClass {
         return $resp;
     }
 
+    function logout($sessiontoken) {
+
+        $apiurl = "http://localhost:3000/endUserSession";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$apiurl);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("token: " . $sessiontoken));
+        $result=curl_exec($ch);
+        curl_close ($ch);
+        return $result;
+    }
+
     function getUserInfo($sessiontoken){
         $apiurl = "http://localhost:3000/getInfo";
         $ch = curl_init();

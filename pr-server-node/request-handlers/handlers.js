@@ -92,7 +92,7 @@ module.exports = function ResquestHandler(SQLDatabase) {
 				res.send("Error ending session");
 			}
 			else {
-				res.send({success: found.success});
+				res.send({success:found.success});
 			}
 		});
 	}
