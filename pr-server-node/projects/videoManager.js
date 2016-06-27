@@ -19,7 +19,7 @@ module.exports = function VideoManager(sqlConnection) {
 	 * @param assetId: Asset ID of the where to find the asset in a project.
 	 * @param callback_getVideoAsset: A callback function to return the result of the request.
 	 */
-	this.handlerPrepareAsset = function(email, assetId, callback_getVideoAsset) {
+	this.handlerPrepareAsset = function(email, credentials, assetId, callback_getVideoAsset) {
 		getPrepareAsset(email, assetId, callback_getVideoAsset);
 	}
 
@@ -51,7 +51,7 @@ module.exports = function VideoManager(sqlConnection) {
 	 * @param assetId: Asset ID of the where to find the asset in a project.
 	 * @param callback_getVideoAsset: A callback function to return the result of the request.
 	 */
-	var getPrepareAsset = function(email, assetId, callback_getVideoAsset) {
+	var getPrepareAsset = function(email, credentials, assetId, callback_getVideoAsset) {
 		var videoToken = uuid.v4();
 
 		const query = "UPDATE monkie SET temporary_url = $1, temporary_asset = $2 WHERE email = $3";
@@ -59,7 +59,14 @@ module.exports = function VideoManager(sqlConnection) {
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
-				callback_getVideoAsset(null, videoToken);
+				api.get('GETWATERMARK', assetId + "/watermark", credentials, function(error, found) {
+					if(!error) {
+						callback_getVideoAsset(null, videoToken);
+					}
+					else {
+						callback_getVideoAsset(error, null);
+					}
+				});
 			}
 			else {
 				callback_getVideoAsset(err, null);

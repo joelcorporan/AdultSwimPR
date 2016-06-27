@@ -3,7 +3,7 @@
  * This module connect to the MediaSilo API to make request to their system.
  * @author: Joel R. Corporan
  */
-var requestType = {'GETPROJECTS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'GETASSETS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'UPDATEUSER': {'PATH': '/v3/users/', 'METHOD': 'PUT'} };
+var requestType = {'GETPROJECTS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'GETASSETS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'UPDATEUSER': {'PATH': '/v3/users/', 'METHOD': 'PUT'}, 'GETWATERMARK': {'PATH': '/v3/assets/', 'METHOD': 'GET'} };
 
 exports.get = function(type, id, credentials, body, callback) {
 
