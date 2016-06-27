@@ -30,7 +30,13 @@ module.exports = function VideoManager(sqlConnection) {
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
-				proxy.getProxy(result.rows[0].credentials, result.rows[0].temporary_asset, res);
+				if(result.rows[0].credentials == undefined) {
+					res.status(403);
+                	res.send('Invalid Request');
+				}
+				else {
+					proxy.getProxy(result.rows[0].credentials, result.rows[0].temporary_asset, res);
+				}
 			}
 			else {
 				res.status(403);
