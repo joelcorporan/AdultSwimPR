@@ -35,19 +35,19 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
     <link href="css/remodal-default-theme.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/remodal.min.js"></script>
     <script src="js/app.js"></script>
 
-    <!-- VideoJS Player -->
-    <link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/5.8.8/video-js.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
-    <!-- Support IE8 -->
-    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js" ></script>
+    <!-- VideoJS Player -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.6/alt/video-js-cdn.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.6/video.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.1.0/videojs-contrib-hls.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.0.2/videojs-contrib-hls.js"></script> -->
 
     <!-- <script type="text/javascript" src="js/jwplayer/jwplayer.js"></script> -->
 
@@ -140,12 +140,11 @@
    
 
     <div id="videostage">
-        <div id="videoplayer" class="m-b-20"></div>
-
-        <!-- <video id="html5Player" autoplay controls>
-            <source id="html5PlayerSource" src="" type="application/x-mpegURL">
+        <div id="videoplayer" class="m-b-20">
+        <!-- <video id="html5Player" class="video-js vjs-default-skin">
+            <source src="" type="application/x-mpegURL">
         </video> -->
-
+        </div>
     </div>
     <a href="#" id="videostagectrl">
 
@@ -207,5 +206,6 @@
 </div>
 
     <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+    <!-- <script src="js/videojs-contrib-hls.js"></script> -->
 </body>
 </html>
