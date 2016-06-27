@@ -9,18 +9,25 @@ $(document).ready(function() {
         var assetid = $(this).children("img").data('assetid');
         $("#videostage").addClass("active");
         $("#videostagectrl").addClass("active");
-        //var playerInstance = videojs("html5Player");
-        //playerInstance.show();
+
         loadFile(assetid);
     })
 
     $("#videostagectrl").on("click", function(){
         $(this).removeClass('active');
         
-        var playerInstance = videojs("html5Player");
-        playerInstance.hide();        
+    
         //var playerInstance = jwplayer("videoplayer");
         //playerInstance.remove();
+        $("video").each(function(){
+            this.pause(); // can't hurt
+            //delete this; // @sparkey reports that this did the trick (even though it makes no sense!)
+            $(this).remove(); // this is probably what actually does the trick
+        });
+
+        // var video = document.getElementById('video');
+        // video.pause();
+        // video.remove();
         $("#videostage").removeClass("active");
 
     });
@@ -51,7 +58,33 @@ $(document).ready(function() {
     function playFile(url){
 
         var videoURL = "http://localhost:3000/proxy.m3u8?id=" + url;
-        var obj,source;
+
+        if(Hls.isSupported()) {
+            console.log("HLS is Supported");
+
+            var video
+            if(!document.getElementById('video')) {
+                video = document.createElement('video');
+                $("#videoplayer").append(video);
+            }
+            else {
+                video = document.getElementById('video');
+            }
+
+            video.height = 540;
+            video.controls = "controls";
+            var hls = new Hls();
+
+            hls.loadSource(videoURL);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                video.play();
+            });
+        }
+        else {
+            console.log("HLS is not Supported");
+        }
+        /*var obj,source;
 
         obj = document.createElement('video');
         $(obj).attr('id', 'example_video_test');
@@ -67,7 +100,7 @@ $(document).ready(function() {
         $(source).attr('src', videoURL);
 
         $("#videoplayer").append(obj);
-        $(obj).append(source);
+        $(obj).append(source);*/
 
        /* var player = videojs('html5Player', {
             controls: true,

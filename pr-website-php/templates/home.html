@@ -43,10 +43,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- VideoJS Player -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.6/alt/video-js-cdn.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.6/video.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.1.0/videojs-contrib-hls.js"></script>
+    <!-- HLS.js Player -->
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.0.2/videojs-contrib-hls.js"></script> -->
 
     <!-- <script type="text/javascript" src="js/jwplayer/jwplayer.js"></script> -->
@@ -141,9 +139,7 @@
 
     <div id="videostage">
         <div id="videoplayer" class="m-b-20">
-        <!-- <video id="html5Player" class="video-js vjs-default-skin">
-            <source src="" type="application/x-mpegURL">
-        </video> -->
+        <video id="video"></video>
         </div>
     </div>
     <a href="#" id="videostagectrl">
