@@ -7,7 +7,7 @@
  * Module Import
  */
 var SessionManager = require('../session/userSessionManager.js');
-var ProjectsManager = require('../projects/ProjectsManager.js')
+var ProjectsManager = require('../projects/projectsManager.js')
 var VideoManager = require('../projects/videoManager.js');
 var video = require('../mediaSilo/videoProxy.js');
 

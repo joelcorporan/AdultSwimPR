@@ -2,7 +2,6 @@
  * This module is use to check if user's token still alive.
  */
 module.exports = function(db) {
-
 	var pgClient = db;
 
 	return function(req, res, next) {

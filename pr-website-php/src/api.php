@@ -84,6 +84,22 @@ class ApiClass {
         
         return $result;
     }
+
+    function getAsset($hostname,$assetid,$sessionkey){
+
+        $apiurl = "https://api.mediasilo.com/v3/assets/".$assetid;
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$apiurl);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("MediaSiloHostContext: " . $hostname, "MediaSiloSessionKey: " . $sessionkey));
+        $result=curl_exec($ch);
+        curl_close ($ch);
+
+        return $result;
+    }
 }
 
 ?>

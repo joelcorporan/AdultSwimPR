@@ -47,6 +47,11 @@ $(document).ready(function() {
     function playFile(url){
         var videoURL = "http://localhost:3000/proxy.m3u8?id=" + url;
 
+        var player = videojs('videoplayer', {
+            autoplay: false,
+            
+        });
+
         var playerInstance = jwplayer("videoplayer");
         playerInstance.setup({
             primary: "html5",

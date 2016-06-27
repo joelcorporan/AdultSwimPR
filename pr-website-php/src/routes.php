@@ -116,3 +116,26 @@ $app->get('/[{projectid}]', function ($request, $response, $args) {
 
 });
 
+// Get the detail of a specific asset
+$app->get('/asset/{assetid}', function ($request, $response, $args) {
+
+    if(!isLoggedIn()) {
+        return $response->withStatus(301)->withHeader('Location', '/login');
+    }
+
+    $api = new ApiClass;
+
+    // Get the config variables
+    $hostname = $this->get('settings')['ms_settings']['hostname'];
+    $sessionkey = $_COOKIE['SESSIONKEY'];
+    $assetid = $args['assetid'];
+
+    // Get assets for the project
+    $asset = $api->getAsset($hostname, $assetid,$sessionkey);
+
+    // Return as JSON
+    $response->withAddedHeader('Content-Type', 'application/json');
+    $response->write($asset);
+
+});
+
