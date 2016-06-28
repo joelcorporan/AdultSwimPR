@@ -144,12 +144,11 @@ module.exports = function ResquestHandler(SQLDatabase) {
 	 * @param res: Route to response the device.
 	 */
 	this.handlerAssetRequest = function(req, res) {
-		var email = req.params.email;
-		var credentials = req.params.credentials;
+		var request = req.params;
 		var assetId = req.query.id;
 
 		var videoAsset = new VideoManager(sqlConnection);
-		videoAsset.handlerPrepareAsset(email, credentials, assetId, function(error, found) {
+		videoAsset.handlerPrepareAsset(request, assetId, function(error, found) {
 			if(error) {
 				res.status(500);
 				res.send("Error retrieving asset url");

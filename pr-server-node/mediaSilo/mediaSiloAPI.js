@@ -3,7 +3,7 @@
  * This module connect to the MediaSilo API to make request to their system.
  * @author: Joel R. Corporan
  */
-var requestType = {'GETPROJECTS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'GETASSETS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'UPDATEUSER': {'PATH': '/v3/users/', 'METHOD': 'PUT'}, 'GETWATERMARK': {'PATH': '/v3/assets/', 'METHOD': 'GET'} };
+var requestType = {'GETPROJECTS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'GETASSETS': {'PATH': '/v3/projects/', 'METHOD': 'GET'}, 'UPDATEUSER': {'PATH': '/v3/users/', 'METHOD': 'PUT'}, 'GETWATERMARK': {'PATH': '/v3/assets/', 'METHOD': 'POST'} };
 
 exports.get = function(type, id, credentials, body, callback) {
 
@@ -28,6 +28,7 @@ exports.get = function(type, id, credentials, body, callback) {
             if (error) {
                 error.status = 500;
                 error.message = 'Error validating';
+
                 callback(error, null);
             }
         });
@@ -40,10 +41,12 @@ exports.get = function(type, id, credentials, body, callback) {
             if(response.statusCode == 200) {
                 var body = Buffer.concat(chunks); 
                 var info = JSON.parse(body);
+                
                 callback(null, info);
             }
             else if (response.statusCode == 204) {
                 var body = Buffer.concat(chunks); 
+
                 callback(null, info);
             }
 

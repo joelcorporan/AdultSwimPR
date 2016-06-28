@@ -8,6 +8,7 @@
  */
 var uuid = require('uuid')
 var proxy = require('../mediaSilo/videoProxy.js');
+var api = require('../mediaSilo/mediaSiloAPI.js');
 
 module.exports = function VideoManager(sqlConnection) {
 	 
@@ -19,8 +20,8 @@ module.exports = function VideoManager(sqlConnection) {
 	 * @param assetId: Asset ID of the where to find the asset in a project.
 	 * @param callback_getVideoAsset: A callback function to return the result of the request.
 	 */
-	this.handlerPrepareAsset = function(email, credentials, assetId, callback_getVideoAsset) {
-		getPrepareAsset(email, assetId, callback_getVideoAsset);
+	this.handlerPrepareAsset = function(request, assetId, callback_getVideoAsset) {
+		getPrepareAsset(request, assetId, callback_getVideoAsset);
 	}
 
 	this.handlerVideoAsset = function(videoToken, res) {
@@ -51,15 +52,15 @@ module.exports = function VideoManager(sqlConnection) {
 	 * @param assetId: Asset ID of the where to find the asset in a project.
 	 * @param callback_getVideoAsset: A callback function to return the result of the request.
 	 */
-	var getPrepareAsset = function(email, credentials, assetId, callback_getVideoAsset) {
+	var getPrepareAsset = function(request, assetId, callback_getVideoAsset) {
 		var videoToken = uuid.v4();
 
 		const query = "UPDATE monkie SET temporary_url = $1, temporary_asset = $2 WHERE email = $3";
-		const values = [videoToken, assetId, email];
+		const values = [videoToken, assetId, request.email];
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
-				api.get('GETWATERMARK', assetId + "/watermark", credentials, function(error, found) {
+				api.get('GETWATERMARK', assetId + "/watermark/" + request.id, request.credentials, null, function(error, found) {
 					if(!error) {
 						callback_getVideoAsset(null, videoToken);
 					}

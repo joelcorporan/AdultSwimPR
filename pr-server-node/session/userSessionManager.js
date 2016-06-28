@@ -80,8 +80,8 @@ module.exports =  function UserSessionManager(database) {
 		var session = new Date().toString();
 		var token = uuid.v4();
 
-		const query = "INSERT INTO monkie (email, credentials, token, sessionTime) VAlUES ($1, $2, $3, $4)"
-		const values = [request.user.email, request.credentials, token, session];
+		const query = "INSERT INTO monkie (email, credentials, token, sessionTime, user_id) VAlUES ($1, $2, $3, $4, $5)"
+		const values = [request.user.email, request.credentials, token, session, request.user.id];
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
@@ -103,8 +103,8 @@ module.exports =  function UserSessionManager(database) {
 		var session = new Date().toString();
 		var token = uuid.v4();
 
-		const query = "UPDATE monkie SET credentials = $1, token = $2, sessionTime = $3 WHERE email = $4";
-		const values = [request.credentials, token, session, request.user.email];
+		const query = "UPDATE monkie SET credentials = $1, token = $2, sessionTime = $3, user_id = $4 WHERE email = $5";
+		const values = [request.credentials, token, session, request.user.id, request.user.email];
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
@@ -161,7 +161,7 @@ module.exports =  function UserSessionManager(database) {
 	 * @param callback_endingSession: A callback function to return the result of the request.
 	 */
 	var endSession = function(request, callback_endingSession) {
-		var query = "UPDATE monkie SET token = NULL, credentials = NULL, sessionTime = NULL, temporary_asset = NULL, temporary_url = NULL WHERE token = $1"
+		var query = "UPDATE monkie SET user_id = NULL, token = NULL, credentials = NULL, sessionTime = NULL, temporary_asset = NULL, temporary_url = NULL WHERE token = $1"
 		var value = [request]
 		
 		pgClient.query(query, value, function(error, result) {

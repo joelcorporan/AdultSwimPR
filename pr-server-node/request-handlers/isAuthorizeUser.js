@@ -41,6 +41,7 @@ module.exports = function(db) {
 							if(!error) {
 								req.params.credentials = result.rows[0].credentials;
 								req.params.email = result.rows[0].email;
+								req.params.id = result.rows[0].user_id;
 								next();
 							}
 							else {
