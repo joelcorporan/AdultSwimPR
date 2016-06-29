@@ -139,6 +139,27 @@ module.exports = function ResquestHandler(SQLDatabase) {
 	}
 
 	/**
+	 * This method handler the assets attached to a project.
+	 * @param req: Request from the device.
+	 * @param res: Route to response the device.
+	 */
+	this.handlerAssetsByName = function(req, res) {
+		var credentials = req.params.credentials;
+		var projectName = req.headers.projectname;
+
+		var project = new ProjectsManager();
+		project.handlerAssetsByName(credentials, projectName, function(error, found) {
+			if(error) {
+				res.status(500);
+				res.send("Error retrieving assets");
+			}
+			else {
+				res.send(found);
+			}
+		});
+	}
+
+	/**
 	 * This method handler video asset from an specific project to the user.
 	 * @param req: Request from the device.
 	 * @param res: Route to response the device.
@@ -155,9 +176,6 @@ module.exports = function ResquestHandler(SQLDatabase) {
 			}
 			else {
 				res.send(found)
-				//res.writeHead(200, {'Content-Type': 'image/jpeg'});
-				//res.header('content-type', 'application/x-mpegurl; charset=utf-8');
-            	//res.send(found.toString());
 			}
 		});
 	}

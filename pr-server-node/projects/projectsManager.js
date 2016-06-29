@@ -30,6 +30,33 @@ module.exports = function ProjectManager() {
 	}
 
 	/**
+	 * This method handler the assets to the user
+	 * @param credentials: Credentials of the user.
+	 * @param projectId: Project ID of the where to find the assets.
+	 * @param callback_getAssets: A callback function to return the result of the request.
+	 */
+	this.handlerAssetsByName = function(credentials, projectName, callback_getAssets) {
+		getProjects(credentials, function(error, found) {
+			if(!error) {
+				for (var i = 0; i < found.length; i++) {
+					if(found[i].name) {
+						if(projectName == found[i].name) {
+							getAssets(credentials, found[i].id, callback_getAssets);
+							break;
+						}
+					}
+					else {
+						callback_getAssets("Not found", null);
+					}
+				}
+			}
+			else {
+				callback_getAssets(error, null);
+			}
+		});
+	}
+
+	/**
 	 * This method gets the projects attached to the user.
 	 * @param credentials: Credentials of the user.
 	 * @param callback_UserSession: A callback function to return the result of the request.

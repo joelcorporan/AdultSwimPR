@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Adult Swim Press Release</title>
+
+<!-- Favicon--> 
+<link rel="apple-touch-icon" sizes="57x57" href="http://localhost:8080/images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://localhost:8080/images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:8080/images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://localhost:8080/images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:8080/images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:8080/images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:8080/images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:8080/images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:8080/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="http://localhost:8080/images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:8080/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://localhost:8080/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:8080/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:8080/images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="http://localhost:8080/images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+<!-- font awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- animate.css -->
+<link rel="stylesheet" href="http://localhost:8080/css/animate/animate.css" />
+<link rel="stylesheet" href="http://localhost:8080/css/animate/set.css" />
+
+<!-- gallery -->
+<link rel="stylesheet" href="css/blueimp-gallery.min.css">
+
+
+<!-- Custom styles -->
+<link href="http://localhost:8080/css/home.css" rel="stylesheet">
+<link href="http://localhost:8080/fonts/fonts.css" rel="stylesheet">
+<link rel="stylesheet" href="http://localhost:8080/css/style.css">
+
+
+<!-- jquery -->
+<script src="http://localhost:8080/js/jquery.js"></script>
+
+<script src="http://localhost:8080/js/app.js"></script>
+<script src="http://localhost:8080/js/remodal.min.js"></script>
+
+</head>
+
+<body>
+<!-- <div class="topbar animated fadeInLeftBig"></div> -->
+
+<!-- Header Starts -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      
+    <div class="navbar-header pull-left">     
+      <a class="navbar-brand" href="/"> <img src="https://s.cdn.turner.com/adultswim/big/img/adultswim-logo.svg" alt="[Adult Swim]"></a>
+    </div>
+    <div class="navbar-header pull-right">
+      <p class="navbar-text">
+        <b> {{ user.firstName }} {{ user.lastName }} </b>
+        <a href="/logout" class="navbar-link">Logout</a>&nbsp;
+      </p>  
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>PR</li>
+        </ul>
+    </div>
+  </div>
+</div>
+<!-- #Header Starts -->
+
+
+<!-- works -->
+<div id="works"  class=" clearfix grid"> 
+    {% for item in projects %}
+    {% if item.isWatermarked != false %}
+    <figure class="effect-oscar  wowload fadeIn">
+        <a href="/shows/{{ item.name }}" class="show-container">
+          <img src="http://localhost:8080/images/portfolio/{{item.name}}.jpg" alt="img01"/>
+          <figcaption>
+              <h2> {{ item.description }}</h2>
+              <p>Click to see more information<br>
+          </figcaption>
+        </a>
+    </figure>
+    {% endif %}
+    {% endfor %}
+     
+</div>
+<!-- works -->
+
+
+<!-- Footer Starts -->
+<div class="footer text-center spacer">
+TM & &copy; 2016 Turner Broadcasting System, Inc. A Time Warner Company. All Rights Reserved.
+</div>
+<!-- # Footer Ends -->
+<!-- <a href="#works" class="gototop "><i class="fa fa-angle-up  fa-3x"></i></a> -->
+
+<!-- wow script -->
+<script src="http://localhost:8080/js/wow/wow.min.js"></script>
+
+<!-- boostrap -->
+<script src="http://localhost:8080/js/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+
+<!-- jquery mobile -->
+<script src="http://localhost:8080/js/mobile/touchSwipe.min.js"></script>
+<script src="http://localhost:8080/js/respond/respond.js"></script>
+
+<!-- gallery -->
+<script src="http://localhost:8080/js/gallery/jquery.blueimp-gallery.min.js"></script>
+
+<!-- custom script -->
+<script src="http://localhost:8080/js/script.js"></script>
+
+</body>
+</html>

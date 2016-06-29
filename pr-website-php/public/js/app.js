@@ -1,34 +1,54 @@
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+$('.header').ready(function() {
+    var show = $(".header").data("show")
+    console.log("SHOW: ", $(".header"))
+    $(".header").children("h3").append(window.ShowDescription[show].about.title);
+    $(".about").children("p").append(window.ShowDescription[show].about.description)
+});
+
+$('#contacts').ready(function() {
+    var show = $("#contacts").data("show")
+
+    for(var i = window.ShowDescription[show].contacts.ATL.length - 1; i >= 0; i--) {
+        $('#atl').children("h3").after('<p>'+ window.ShowDescription[show].contacts.ATL[i].name +'</p> '+
+                                       '<h5> <a href="mailto:'+ window.ShowDescription[show].contacts.ATL[i].email +'"> '+ window.ShowDescription[show].contacts.ATL[i].email +' </a> </h5> '+
+                                       '<p> '+ window.ShowDescription[show].contacts.ATL[i].phone +'</p> <br>')
+    }
+
+    for(var i = window.ShowDescription[show].contacts.LA.length - 1; i >= 0; i--) {
+        $('#la').children("h3").after('<p>'+ window.ShowDescription[show].contacts.LA[i].name +'</p> '+
+                                       '<h5> <a href="mailto:'+ window.ShowDescription[show].contacts.LA[i].email +'"> '+ window.ShowDescription[show].contacts.LA[i].email +' </a> </h5> '+
+                                       '<p> '+ window.ShowDescription[show].contacts.LA[i].phone +'</p> <br>')
+    }
+});
 
 $(document).ready(function() {
-
-    // Player Key
-    //jwplayer.key = "d6gsi297N6N7krcFM23KX4G7XqOJJHfHfo7L/g==";
-
     // Listen to clicks on the thumbnails to start video playback
     $(document).on('click','.thumb-container', function(e){
         var assetid = $(this).children("img").data('assetid');
+        $("#jumbo-img").addClass("inactive");
         $("#videostage").addClass("active");
         $("#videostagectrl").addClass("active");
-
         loadFile(assetid);
     })
 
     $("#videostagectrl").on("click", function(){
         $(this).removeClass('active');
-        
-    
-        //var playerInstance = jwplayer("videoplayer");
-        //playerInstance.remove();
+  
         $("video").each(function(){
             this.pause(); // can't hurt
-            //delete this; // @sparkey reports that this did the trick (even though it makes no sense!)
             $(this).remove(); // this is probably what actually does the trick
         });
 
-        // var video = document.getElementById('video');
-        // video.pause();
-        // video.remove();
         $("#videostage").removeClass("active");
+        $("#jumbo-img").removeClass("inactive");
 
     });
 

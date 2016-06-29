@@ -2,7 +2,6 @@
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 
-
 .navbar {
     line-height: 2em;
 }
@@ -15,7 +14,11 @@
 body, html {
     background: #ffffff;
     margin: 0;
-    padding: 50px 0 0 0;
+    padding: 0px 0 0 0;
+}
+
+body.showbody {
+    padding-top: 55px;
 }
 
 .wrapper {
@@ -23,8 +26,32 @@ body, html {
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+}
+
+.jumbotron img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.jumbotron-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.jumbotron-container.inactive {
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    transition: all 1s ease-in-out;
+}
+
+.jumbotron {
+    background-color: rgba(33, 45, 23, 0.6);
 }
 
 .flexcontainer {
@@ -36,7 +63,7 @@ body, html {
 
 .flex-card-listitem {
     height: 300px;
-    width: 330px;
+    width: 300px;
     background-color: #ffffff;
 
 }
@@ -52,6 +79,7 @@ body, html {
 .flex-card-listitem .duration {
     color: #a0a0a0;
     font-family: "Circular-Pro-Book";
+    font-size: 0.90em;
     display: block;
     text-align: center;
     font-weight: lighter;
@@ -73,7 +101,23 @@ body, html {
     overflow: hidden;
 }
 
+.thumb-picture-container {
+    width: 330px;
+    height: 185px;
+    display: block;
+    background-color: #ffffff;
+    border: none;
+    margin: 0px;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+
 .thumb-container img {
+    max-width:100%;
+    max-height:100%;
+}
+
+.thumb-picture-container img {
     max-width:100%;
     max-height:100%;
 }
@@ -83,7 +127,7 @@ body, html {
     line-height: 30px;
 }
 
-.footer {
+.showfooter {
     border-top: 1px solid #eeeeee;
     padding-top: 10px;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -167,7 +211,7 @@ li a.selected {
 }
 
 .m-b-30 {
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .m-b-40 {
@@ -296,4 +340,21 @@ li a.selected {
 .jwplayer {
     margin: 0 auto!important;
     background-color: black!important;
+}
+
+.about {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header p {
+    margin-bottom: 30px;
 }

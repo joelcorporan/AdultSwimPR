@@ -69,6 +69,22 @@ class ApiClass {
         return $result;
     }
 
+    function getUserAssetsByName($sessiontoken, $projectName){
+
+        $apiurl = "http://localhost:3000/getAssetsByName";
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$apiurl);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("token: " . $sessiontoken, "ProjectName: " . $projectName));
+        $result=curl_exec($ch);
+        curl_close ($ch);
+
+        return $result;
+    }
+
     function getAssets($projectid,$sessiontoken){
 
         $apiurl = "http://localhost:3000/getAssets?id=$projectid";

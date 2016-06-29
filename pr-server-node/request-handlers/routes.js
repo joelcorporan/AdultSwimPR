@@ -26,6 +26,9 @@ module.exports = function Route(app, handlers, db) {
 	// This route handle user Assets.
 	app.get('/getAssets', isAuthorizeUser(db), handlers.handlerAssets);
 
+	// This route handle user Assets.
+	app.get('/getAssetsByName', isAuthorizeUser(db), handlers.handlerAssetsByName);
+
 	// This route handle project specific assest.
 	app.get('/getAssetRequest', isAuthorizeUser(db), handlers.handlerAssetRequest);
 

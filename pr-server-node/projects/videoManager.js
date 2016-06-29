@@ -31,7 +31,7 @@ module.exports = function VideoManager(sqlConnection) {
 
 		pgClient.query(query, values, function(err, result) {
 			if(!err) {
-				if(result.rows[0].credentials == undefined) {
+				if(!result.rows[0].credentials) {
 					res.status(403);
                 	res.send('Invalid Request');
 				}

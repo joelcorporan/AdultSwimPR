@@ -1,9 +1,6 @@
 <?php
 
 
-// Helper Functions
-
-
 // Check if the the hostname and sessionkey cookies are set and the user is logged in
 function isLoggedIn() {
     if(isset($_COOKIE['token'])){
@@ -70,9 +67,65 @@ $app->get('/logout', function ($request, $response, $args) {
     }
 });
 
+// Browse Projects / Main Screen
+$app->get('/[{shows}]', function($request, $response, $args) {
+    if(!isLoggedIn()) {
+        return $response->withStatus(301)->withHeader('Location', '/login');
+    }
+
+    $api = new ApiClass;
+
+    // Get the config variables
+    $sessiontoken = $_COOKIE['token'];
+
+    // Get the user detail
+    $user = json_decode($api->getUserInfo($sessiontoken));
+
+    if(!isset($user->id)){
+        return $this->view->render($response, "login.html", []);
+    }
+
+    // Get all projects
+    $projects = json_decode($api->getUserProjects($sessiontoken));
+
+    return $this->view->render($response, 'shows.html', [
+        'projects' => $projects,
+        'user' => $user
+    ]);
+
+});
 
 // Browse Projects / Main Screen
-$app->get('/[{projectid}]', function ($request, $response, $args) {
+$app->get('/shows/[{projectName}]', function($request, $response, $args) {
+    if(!isLoggedIn()) {
+        return $response->withStatus(301)->withHeader('Location', '/login');
+    }
+
+    $api = new ApiClass;
+
+    // Get the config variables
+    $sessiontoken = $_COOKIE['token'];
+
+    // Get the user detail
+    $user = json_decode($api->getUserInfo($sessiontoken));
+
+    if(!isset($user->id)){
+        return $this->view->render($response, "login.html", []);
+    }
+
+    // Get all projects
+    $assets = json_decode($api->getUserAssetsByName($sessiontoken, $args['projectName']));
+
+    return $this->view->render($response, '/home.html', [
+        'assets' => $assets,
+        'user' => $user,
+        'show' => $args['projectName']
+    ]);
+
+});
+
+// Browse Projects / Main Screen
+/*$app->get('/[{projectid}]', function ($request, $response, $args) {
 
 
     if(!isLoggedIn()) {
@@ -114,7 +167,7 @@ $app->get('/[{projectid}]', function ($request, $response, $args) {
     ]);
 
 
-});
+});*/
 
 // Get the detail of a specific asset
 $app->get('/asset/{assetid}', function ($request, $response, $args) {
