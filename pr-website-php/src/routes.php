@@ -88,7 +88,9 @@ $app->get('/[{projectid}]', function ($request, $response, $args) {
     $user = json_decode($api->getUserInfo($sessiontoken));
 
     if(!isset($user->id)){
-        return $this->view->render($response, "login.html", []);
+        return $this->view->render($response, "login.html", [
+            'path' => $
+            ]);
     }
 
 
